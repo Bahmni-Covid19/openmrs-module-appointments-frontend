@@ -44,12 +44,10 @@ angular.module('bahmni.appointments')
 
                 popUpScope.openJitsiMeet = function (appointment) {
 
-                    $window.open("https://" +
-                        window.location.hostname +
-                        Bahmni.Common.Constants.patientsURL +
-                        appointment.patient.uuid +
-                        Bahmni.Common.Constants.patientsURLGeneralInformationTab
-                        , '_self')
+                    var jitsiURL = appService.getAppDescriptor().getConfigValue("jitsiURL") ;
+
+                    window.open(  jitsiURL + $scope.selectedAppointment.uuid
+                        , '_blank')
                 };
                 popUpScope.copyTeleConsultationMeetingURL = function (appointment) {
                     var jitsiMeetingUrl = 'https://meet.jit.si/' + appointment.uuid

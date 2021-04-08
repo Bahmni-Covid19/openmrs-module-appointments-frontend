@@ -183,13 +183,10 @@ angular.module('bahmni.appointments')
             };
 
             $scope.openJitsiMeet = function () {
+                var jitsiURL = appService.getAppDescriptor().getConfigValue("jitsiURL") ;
 
-                window.open("https://" +
-                    window.location.hostname +
-                    Bahmni.Common.Constants.patientsURL +
-                    $scope.selectedAppointment.patient.uuid +
-                    Bahmni.Common.Constants.patientsURLGeneralInformationTab
-                    , '_self')
+                window.open(  jitsiURL + $scope.selectedAppointment.uuid
+                    , '_blank')
             };
 
             $scope.copyTeleConsultationMeetingURL = function () {
