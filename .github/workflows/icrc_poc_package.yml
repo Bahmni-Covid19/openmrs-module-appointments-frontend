@@ -1,0 +1,43 @@
+name: Openmrs-module-appointments - Frontend - Github actions CI/CD
+
+on:
+  push:
+    branches: [ ICRC-POC ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: define variables
+        run: |
+          PACKAGE_VERSION=0.0.${{ github.run_number }}
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+          echo "PACKAGE_FILENAME=openmrs_appointments_app.$PACKAGE_VERSION.zip" >> $GITHUB_ENV
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install npm
+        run: npm install
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run:  npm run build
+
+      - name: Package
+        run: |
+          echo "PACKAGE_FILENAME '$PACKAGE_FILENAME'"
+          cd dist
+          for FILE in *; do zip -r ../$PACKAGE_FILENAME $FILE; done
+          cd ..
+
+      - uses: actions/upload-artifact@v2
+          with:
+            name: Package
+            path: $PACKAGE_FILENAME
