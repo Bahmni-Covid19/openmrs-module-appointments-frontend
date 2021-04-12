@@ -41,5 +41,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Uploading ${{ env.PACKAGE_FILENAME }}
+          name: ${{ env.PACKAGE_FILENAME }}
           path: ${{ env.PACKAGE_FILENAME }}
