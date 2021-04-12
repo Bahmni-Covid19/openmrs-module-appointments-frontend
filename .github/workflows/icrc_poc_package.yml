@@ -33,11 +33,7 @@ jobs:
       - name: Package
         run: |
           echo "PACKAGE_FILENAME '$PACKAGE_FILENAME'"
-          cd dist
-          for FILE in *; do zip -r ../$PACKAGE_FILENAME $FILE; done
-          cd ..
-          pwd
-          ls
+          do zip -r $PACKAGE_FILENAME ./dist
 
       - uses: actions/upload-artifact@v2
         with:
