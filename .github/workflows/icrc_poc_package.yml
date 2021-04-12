@@ -41,5 +41,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Package
-          path: '$PACKAGE_FILENAME'
+          name: Uploading ${PACKAGE_FILENAME}
+          path: ${PACKAGE_FILENAME}
