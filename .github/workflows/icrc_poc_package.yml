@@ -14,7 +14,7 @@ jobs:
         run: |
           PACKAGE_VERSION=0.0.${{ github.run_number }}
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-          echo "PACKAGE_FILENAME=openmrs_appointments_app.$PACKAGE_VERSION.zip" >> $GITHUB_ENV
+          echo "PACKAGE_FILENAME=openmrs_appointments_app.$PACKAGE_VERSION" >> $GITHUB_ENV
 
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
