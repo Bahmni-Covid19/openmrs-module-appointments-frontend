@@ -33,7 +33,7 @@ jobs:
       - name: Package
         run: |
           echo "PACKAGE_FILENAME '$PACKAGE_FILENAME'"
-          do zip -r $PACKAGE_FILENAME ./dist
+          zip -r $PACKAGE_FILENAME ./dist
 
       - uses: actions/upload-artifact@v2
         with:
