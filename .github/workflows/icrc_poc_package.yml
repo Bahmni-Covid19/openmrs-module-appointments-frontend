@@ -36,6 +36,8 @@ jobs:
           cd dist
           for FILE in *; do zip -r ../$PACKAGE_FILENAME $FILE; done
           cd ..
+          pwd
+          ls
 
       - uses: actions/upload-artifact@v2
         with:
