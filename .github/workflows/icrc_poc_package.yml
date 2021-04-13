@@ -30,12 +30,7 @@ jobs:
       - name: Build
         run:  npm run build
 
-      - name: Package
-        run: |
-          echo "PACKAGE_FILENAME '$PACKAGE_FILENAME'"
-          zip -r $PACKAGE_FILENAME ./dist
-
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PACKAGE_FILENAME }}
-          path: ${{ env.PACKAGE_FILENAME }}
+          path: ./dist
