@@ -45,12 +45,16 @@ angular.module('bahmni.appointments')
                 popUpScope.openJitsiMeet = function (appointment) {
 
                     var jitsiURL = appService.getAppDescriptor().getConfigValue("jitsiURL") ;
+                    jitsiURL = jitsiURL.endsWith('/') ? jitsiURL : jitsiURL + '/';
 
-                    window.open(  jitsiURL + $scope.selectedAppointment.uuid
+                    window.open(  jitsiURL + appointment.uuid
                         , '_blank')
                 };
                 popUpScope.copyTeleConsultationMeetingURL = function (appointment) {
-                    var jitsiMeetingUrl = 'https://meet.jit.si/' + appointment.uuid
+                    var jitsiURL = appService.getAppDescriptor().getConfigValue("jitsiURL") ;
+                    jitsiURL = jitsiURL.endsWith('/') ? jitsiURL : jitsiURL + '/';
+
+                    var jitsiMeetingUrl = jitsiURL + appointment.uuid
                     const el = document.createElement('textarea');
                     el.value = jitsiMeetingUrl;
                     document.body.appendChild(el);
