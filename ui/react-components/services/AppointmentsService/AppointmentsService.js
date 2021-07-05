@@ -1,4 +1,4 @@
-import {conflictsFor, saveOrUpdateAppointment} from '../../api/appointmentsApi';
+import {conflictsFor, saveOrUpdateAppointment, getPatientEmail, getPatientPrimaryContact} from '../../api/appointmentsApi';
 import {
     recurringConflictsFor,
     saveRecurringAppointments,
@@ -42,4 +42,12 @@ const updateProvidersFor = (recurringAppointmentRequest, providers) => {
 export const updateRecurring = async recurringAppointmentRequest => {
     const providers = getProviders(recurringAppointmentRequest.appointmentRequest.providers);
     return await updateRecurringAppointments(updateProvidersFor(recurringAppointmentRequest, providers));
+};
+
+export const getPatientEmailFromUuid = async uuid => {
+    return getPatientEmail(uuid);
+};
+
+export const getPatientPrimaryContactFromUuid = async uuid => {
+    return getPatientPrimaryContact(uuid);
 };

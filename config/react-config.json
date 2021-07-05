@@ -12,6 +12,8 @@
     "appointmentByUuidUrl": "/openmrs/ws/rest/v1/appointment/",
     "recurringAppointmentFetchUrl": "/openmrs/ws/rest/v1/recurring-appointments/",
     "recurringAppointmentsSaveUrl": "/openmrs/ws/rest/v1/recurring-appointments",
+    "appointmentPatientEmailUrl":"/openmrs/ws/rest/v1/appointment/contactDetails/email",
+    "appointmentPatientPrimaryContactUrl":"/openmrs/ws/rest/v1/appointment/contactDetails/primaryContact",
     "appointmentConflictsUrl": "/openmrs/ws/rest/v1/appointments/conflicts",
     "recurringAppointmentsConflictsUrl": "/openmrs/ws/rest/v1/recurring-appointments/conflicts",
     "i18nConfigPath": "/bahmni_config/openmrs/i18n/",

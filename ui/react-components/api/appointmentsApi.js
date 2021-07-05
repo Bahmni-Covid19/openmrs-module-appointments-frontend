@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {appointmentByUuidUrl, appointmentConflictsUrl, appointmentSaveUrl} from "../config";
+import {appointmentByUuidUrl, appointmentConflictsUrl, appointmentSaveUrl, appointmentPatientPrimaryContactUrl, appointmentPatientEmailUrl} from "../config";
 
 export const saveOrUpdateAppointment = async (data) => {
     try {
@@ -23,6 +23,26 @@ export const conflictsFor = async appointmentRequest => {
 export const getAppointment = async (appointmentUuid) => {
     try {
         const response = await axios.get(`${appointmentByUuidUrl}?uuid=${appointmentUuid}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+        return error.response;
+    }
+};
+
+export const getPatientEmail = async (patientUuid) => {
+    try {
+        const response = await axios.get(`${appointmentPatientEmailUrl}?uuid=${patientUuid}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+        return error.response;
+    }
+};
+
+export const getPatientPrimaryContact = async (patientUuid) => {
+    try {
+        const response = await axios.get(`${appointmentPatientPrimaryContactUrl}?uuid=${patientUuid}`);
         return response;
     } catch (error) {
         console.error(error);
