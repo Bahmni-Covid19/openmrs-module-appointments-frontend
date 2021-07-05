@@ -25,6 +25,7 @@ import {
     saveRecurring
 } from "../../services/AppointmentsService/AppointmentsService";
 import Label from '../Label/Label.jsx';
+import PreferredModeOfCommunication from "../PreferredModeOfCommunication/PreferredModeOfCommunication.jsx";
 import {getDateTime, isStartTimeBeforeEndTime} from '../../utils/DateUtil.js'
 import TimeSelector from "../TimeSelector/TimeSelector.jsx";
 import AppointmentNotes from "../AppointmentNotes/AppointmentNotes.jsx";
@@ -117,6 +118,7 @@ const AddAppointment = props => {
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [serviceErrorMessage, setServiceErrorMessage] = useState('');
     const [disableSaveButton, setDisableSaveButton] = useState(false);
+    const [showTeleconsultationPopup, setShowTeleconsultationPopup] = useState(false);
 
     useEffect(() => {
         if (appointmentDetails.occurrences === undefined)
@@ -423,11 +425,26 @@ const AddAppointment = props => {
                     <AppointmentType appointmentType={appointmentDetails.appointmentType}
                         teleconsultation={appointmentDetails.teleconsultation}
                         onChange={(e) => {
-                            if (appointmentDetails.teleconsultation && e.target.name === TELECONSULTATION_APPOINTMENT)
+                            if (appointmentDetails.teleconsultation && e.target.name === TELECONSULTATION_APPOINTMENT){ 
                                 updateAppointmentDetails({ teleconsultation: false });
-                            else if (!appointmentDetails.teleconsultation && e.target.name === TELECONSULTATION_APPOINTMENT)
-                                updateAppointmentDetails({ teleconsultation: true });
+                            }
+                            else if (!appointmentDetails.teleconsultation && e.target.name === TELECONSULTATION_APPOINTMENT){ 
+                                updateAppointmentDetails({ teleconsultation: true }); 
+                                setShowTeleconsultationPopup(true);
+                            }
                         }} />
+                        <div>
+                        {showTeleconsultationPopup &&
+                        <CustomPopup style={customPopup}
+                             open={true}
+                             closeOnDocumentClick={false}
+                             closeOnEscape={false} 
+                             popupContent={<PreferredModeOfCommunication 
+                                            updateAppointmentDetails={updateAppointmentDetails}
+                                            patient={appointmentDetails.patient.value}
+                                            showPopup = {setShowTeleconsultationPopup}
+                                            />}/>}
+                        </div>
                 </div>
             </div>
             <div className={classNames(recurringContainer)}>
